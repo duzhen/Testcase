@@ -1,0 +1,31 @@
+<ul class="client">
+  <li *ngFor="let t of clients">
+    <label>ID:
+      {{t.id}}
+    </label>
+    <label>Partner id:
+      {{t.partner_id}}
+    </label>
+    <label>Avatar:
+      {{t.avatar?'有头像':'无'}}
+    </label>
+    <label>Dispaly Name:
+      {{t.display_name}}
+    </label>
+    <label>Cover Image:
+      {{t.cover_image?'有':'无'}}
+    </label>
+    <label>Email:
+      {{t.email}}
+    </label>
+    <label>Created Date:
+      {{t.created_date}}
+    </label>
+    <label>Active:
+      {{t.active}}
+    </label>
+    <label>Reactivate:
+      {{t.reactivate}}
+    </label>
+  </li>
+</ul>

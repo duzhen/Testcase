@@ -1,0 +1,31 @@
+<router-outlet></router-outlet>
+<div class="demo-toolbar">
+  <mat-toolbar color="primary">
+    <mat-icon class="demo-toolbar-icon" (click)="start.toggle()">menu</mat-icon>
+    <span>{{testName}}</span>
+
+    <span class="demo-fill-remaining"></span>
+
+    <mat-icon>search</mat-icon>
+  </mat-toolbar>
+</div>
+
+<mat-sidenav-container class="demo-sidenav-area">
+  <mat-sidenav #start mode="side" opened="true" class="sidenav">
+    <ul class="testcase">
+      <li *ngFor="let t of testcases">
+        <a (click)="gotest(t.id, t.name)">
+          <!--routerLink="/testcase/{{t.id}}">-->
+          {{t.name}}
+        </a>
+      </li>
+    </ul>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div class="ad-banner">
+      <ng-template ad-host></ng-template>
+    </div>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
