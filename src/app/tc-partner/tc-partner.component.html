@@ -22,31 +22,30 @@
       </label>
     </li>
   </ul>
-  <div class="editor">
-    <div class="option">
-      <button (click)="add()">add</button>
-      <button (click)="clear()">clear</button>
-      <button (click)="save()">save</button>
-    </div>
-    <div *ngIf="partner">
+  <div class="editor container">
+    <form (ngSubmit)="onSubmit()" #partnerForm="ngForm">
+      <div class="option">
+        <button (click)="add()" type="button" class="btn btn-primary">Add</button>
+        <button (click)="save()" type="submit" class="btn btn-success" [disabled]="!partnerForm.form.valid">Save</button>
+        <button (click)="delete()" type="button" class="btn btn-danger" [disabled]="!partner.id">Delete</button>
+      </div>
+      <div *ngIf="partner">
 
-      <h2>ID {{ partner.id }}</h2>
-      <div>
+        <h2>ID {{ partner.id }}</h2>
         <label>Phone:
-          <input [(ngModel)]="partner.phone" placeholder="Phone"/>
+          <input [(ngModel)]="partner.phone" placeholder="Phone" type="text" class="form-control" name="phone" required pattern="[0-9]{3}[-][0-9]{3}[-][0-9]{4}" minlength="12" maxlength="12" />
         </label>
         <label>Area Code:
-          <input [(ngModel)]="partner.area_code" placeholder="Area Code"/>
+          <input [(ngModel)]="partner.area_code" placeholder="Area Code" type="text" class="form-control" name="area_code" required pattern="[0-9]*" maxlength="4"/>
         </label>
         <label>First Name:
-          <input [(ngModel)]="partner.first_name" placeholder="First Name"/>
+          <input [(ngModel)]="partner.first_name" placeholder="First Name" type="text" class="form-control" name="first_name" required pattern="[a-zA-Z][a-zA-Z ]+"/>
         </label>
         <label>Last Name:
-          <input [(ngModel)]="partner.last_name" placeholder="Last Name"/>
+          <input [(ngModel)]="partner.last_name" placeholder="Last Name" type="text" class="form-control" name="last_name" required pattern="[a-zA-Z][a-zA-Z ]+"/>
         </label>
+
       </div>
-
-    </div>
-
+    </form>
   </div>
 </div>

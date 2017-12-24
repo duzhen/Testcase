@@ -37,13 +37,23 @@ export class TestcaseService {
     );
   }
 
-    /** POST: add a new partner to the server */
-    addPartner (partner: Partner): Observable<Partner> {
-      return this.http.post<Partner>(this.partnerUrl, partner, httpOptions).pipe(
-        tap((partner: Partner) => this.log(`added partner w/ id=${partner}`)),
-        catchError(this.handleError<Partner>('addPartner'))
-      );
-    }
+  /** POST: add a new partner to the server */
+  addPartner (partner: Partner): Observable<Partner> {
+    return this.http.post<Partner>(this.partnerUrl, partner, httpOptions).pipe(
+      tap((partner: Partner) => this.log(`added partner w/ id=${partner}`)),
+      catchError(this.handleError<Partner>('addPartner'))
+    );
+  }
+
+  deleteHero (partner: Partner | number): Observable<Partner> {
+    const id = typeof partner === 'number' ? partner : partner.id;
+    const url = `${this.partnerUrl}/${id}`;
+  
+    return this.http.delete<Partner>(url, httpOptions).pipe(
+      tap(_ => this.log(`deleted partner id=${id}`)),
+      catchError(this.handleError<Partner>('deletePartner'))
+    );
+  }
 
   getClient(): Observable<Client[]> {
     const url = `${this.clientUrl}`;

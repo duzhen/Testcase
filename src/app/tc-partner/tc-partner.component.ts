@@ -46,4 +46,10 @@ export class TcPartnerComponent implements OnInit {
       .subscribe();
     this.ngOnInit();
   }
+
+  delete(): void {
+    this.testcaseService.deleteHero(this.partner)
+      .subscribe();
+    this.ngOnInit();
+  }
 }
