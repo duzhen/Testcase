@@ -37,6 +37,14 @@ export class TestcaseService {
     );
   }
 
+    /** POST: add a new partner to the server */
+    addPartner (partner: Partner): Observable<Partner> {
+      return this.http.post<Partner>(this.partnerUrl, partner, httpOptions).pipe(
+        tap((partner: Partner) => this.log(`added partner w/ id=${partner}`)),
+        catchError(this.handleError<Partner>('addPartner'))
+      );
+    }
+
   getClient(): Observable<Client[]> {
     const url = `${this.clientUrl}`;
     return this.http.get<Client[]>(url).pipe(
@@ -79,6 +87,7 @@ export class TestcaseService {
 
   /** Log a HeroService message with the MessageService */
   private log(message: string) {
+    console.debug(message)
     // this.messageService.add('HeroService: ' + message);
   }
 }

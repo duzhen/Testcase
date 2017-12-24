@@ -13,8 +13,8 @@
 <mat-sidenav-container class="demo-sidenav-area">
   <mat-sidenav #start mode="side" opened="true" class="sidenav">
     <ul class="testcase">
-      <li *ngFor="let t of testcases">
-        <a (click)="gotest(t.id, t.name)">
+      <li *ngFor="let t of testcases" (click)="gotest(t.id, t.name)">
+        <a>
           <!--routerLink="/testcase/{{t.id}}">-->
           {{t.name}}
         </a>

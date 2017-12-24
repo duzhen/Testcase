@@ -1,22 +1,52 @@
-<ul class="partner">
-  <li *ngFor="let t of partners">
-    <label>ID:
-      {{t.id}}
-    </label>
-    <label>Phone:
-      {{t.phone}}
-    </label>
-    <label>Area Code:
-      {{t.area_code}}
-    </label>
-    <label>First Name:
-      {{t.first_name}}
-    </label>
-    <label>Last Name:
-      {{t.last_name}}
-    </label>
-    <label>Photo id:
-      {{t.photo_id}}
-    </label>
-  </li>
-</ul>
+<div class="tcpartner">
+  <ul class="partner">
+    <li *ngFor="let t of partners" [class.selected]="t === selectedPartner"
+    (click)="onSelect(t)">
+      <label>ID:
+        {{t.id}}
+      </label>
+      <label>Phone:
+        {{t.phone}}
+      </label>
+      <label>Area Code:
+        {{t.area_code}}
+      </label>
+      <label>First Name:
+        {{t.first_name}}
+      </label>
+      <label>Last Name:
+        {{t.last_name}}
+      </label>
+      <label>Photo id:
+        {{t.photo_id}}
+      </label>
+    </li>
+  </ul>
+  <div class="editor">
+    <div class="option">
+      <button (click)="add()">add</button>
+      <button (click)="clear()">clear</button>
+      <button (click)="save()">save</button>
+    </div>
+    <div *ngIf="partner">
+
+      <h2>ID {{ partner.id }}</h2>
+      <div>
+        <label>Phone:
+          <input [(ngModel)]="partner.phone" placeholder="Phone"/>
+        </label>
+        <label>Area Code:
+          <input [(ngModel)]="partner.area_code" placeholder="Area Code"/>
+        </label>
+        <label>First Name:
+          <input [(ngModel)]="partner.first_name" placeholder="First Name"/>
+        </label>
+        <label>Last Name:
+          <input [(ngModel)]="partner.last_name" placeholder="Last Name"/>
+        </label>
+      </div>
+
+    </div>
+
+  </div>
+</div>
