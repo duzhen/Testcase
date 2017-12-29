@@ -23,6 +23,7 @@ import { TcPartnerComponent } from './tc-partner/tc-partner.component';
 import { LoginComponent } from './login/login.component';
 import { TestcaseComponent } from './testcase/testcase.component';
 import { TcClientComponent } from './tc-client/tc-client.component';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { TcClientComponent } from './tc-client/tc-client.component';
     MatIconModule,
     AppRoutingModule,
     HttpClientModule,
+    HttpModule,
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.

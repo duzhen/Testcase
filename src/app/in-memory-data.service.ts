@@ -55,6 +55,9 @@ export class InMemoryDataService implements InMemoryDbService {
       { id: 8, partner_id: 8, avatar: true, display_name:'Andrew Chen', cover_image: false, email:'andrew.chen@ethoughtware.com', created_date:'2017-07-25  10:00:00 AM', active:'-', reactivate:'-' }
     ];
 
-    return {testcase, partner, client};
+    const file = [
+      {id: 0 , file: '../favicon.ico'}
+    ];
+    return {testcase, partner, client, file};
   }
 }

@@ -6,6 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import {Partner} from './tc-partner/partner';
 import { Client } from './tc-client/client';
+import { Http, Response, RequestOptions, Headers } from '@angular/http';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -14,15 +15,15 @@ const httpOptions = {
 @Injectable()
 export class TestcaseService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private httpc: HttpClient, private http: Http) { }
 
   private testcaseUrl = 'api/testcase';  // URL to web api
   private partnerUrl = 'api/partner';
   private clientUrl = 'api/client';
-
+  private uploadUrl = 'api/file';
   /** GET heroes from the server */
   getTestcases (): Observable<Testcase[]> {
-    return this.http.get<Testcase[]>(this.testcaseUrl)
+    return this.httpc.get<Testcase[]>(this.testcaseUrl)
       .pipe(
         tap(heroes => this.log(`fetched testcase`)),
         catchError(this.handleError('getTestcase', []))
@@ -31,7 +32,7 @@ export class TestcaseService {
 
   getPartner(): Observable<Partner[]> {
     const url = `${this.partnerUrl}`;
-    return this.http.get<Partner[]>(url).pipe(
+    return this.httpc.get<Partner[]>(url).pipe(
       tap(_ => this.log(`fetched Partner`)),
       catchError(this.handleError(`Partner`, []))
     );
@@ -39,7 +40,7 @@ export class TestcaseService {
 
   /** POST: add a new partner to the server */
   addPartner (partner: Partner): Observable<Partner> {
-    return this.http.post<Partner>(this.partnerUrl, partner, httpOptions).pipe(
+    return this.httpc.post<Partner>(this.partnerUrl, partner, httpOptions).pipe(
       tap((partner: Partner) => this.log(`added partner w/ id=${partner}`)),
       catchError(this.handleError<Partner>('addPartner'))
     );
@@ -48,8 +49,8 @@ export class TestcaseService {
   deleteHero (partner: Partner | number): Observable<Partner> {
     const id = typeof partner === 'number' ? partner : partner.id;
     const url = `${this.partnerUrl}/${id}`;
-  
-    return this.http.delete<Partner>(url, httpOptions).pipe(
+
+    return this.httpc.delete<Partner>(url, httpOptions).pipe(
       tap(_ => this.log(`deleted partner id=${id}`)),
       catchError(this.handleError<Partner>('deletePartner'))
     );
@@ -57,12 +58,26 @@ export class TestcaseService {
 
   getClient(): Observable<Client[]> {
     const url = `${this.clientUrl}`;
-    return this.http.get<Client[]>(url).pipe(
+    return this.httpc.get<Client[]>(url).pipe(
       tap(_ => this.log(`fetched Client`)),
       catchError(this.handleError(`Client`, []))
     );
   }
 
+  uploadFile(formData: FormData, headers: Headers) {
+    const options = new RequestOptions({ headers: headers });
+    return this.http.post(`${this.uploadUrl}`, formData, options)
+            // .map(res => res.json())
+            // .catch(error => Observable.throw(error))
+            .subscribe(
+                data => console.log('success'),
+                error => console.log(error)
+            );
+            // .pipe(
+            //   tap(_ => this.log(`deleted partner id=${formData.get('uploadFile')}`)),
+            //   // catchError(this.handleError<Partner>('deletePartner'))
+            // );
+  }
   /**
    * Handle Http operation that failed.
    * Let the app continue.
@@ -89,7 +104,7 @@ export class TestcaseService {
       // if not search term, return empty hero array.
       return of([]);
     }
-    return this.http.get<Testcase[]>(`api/testcase/?name=${term}`).pipe(
+    return this.httpc.get<Testcase[]>(`api/testcase/?name=${term}`).pipe(
       tap(_ => this.log(`found heroes matching "${term}"`)),
       catchError(this.handleError<Testcase[]>('searchTestcase', []))
     );
@@ -97,7 +112,7 @@ export class TestcaseService {
 
   /** Log a HeroService message with the MessageService */
   private log(message: string) {
-    console.debug(message)
+    console.debug(message);
     // this.messageService.add('HeroService: ' + message);
   }
 }

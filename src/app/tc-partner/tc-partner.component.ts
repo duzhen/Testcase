@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {TestcaseService} from '../testcase.service';
 import {Partner} from './partner';
+import { RequestOptions, Headers } from '@angular/http';
 
 @Component({
   selector: 'app-tc-partner',
@@ -52,4 +53,17 @@ export class TcPartnerComponent implements OnInit {
       .subscribe();
     this.ngOnInit();
   }
+
+  fileChange(event) {
+    const fileList: FileList = event.target.files;
+    if (fileList.length > 0) {
+        const file: File = fileList[0];
+        const formData: FormData = new FormData();
+        formData.append('uploadFile', file, file.name);
+        const headers = new Headers();
+        headers.append('Content-Type', 'multipart/form-data');
+        headers.append('Accept', 'application/json');
+        this.testcaseService.uploadFile(formData, headers);
+    }
+}
 }

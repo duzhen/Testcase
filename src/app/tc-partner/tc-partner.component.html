@@ -44,7 +44,7 @@
         <label>Last Name:
           <input [(ngModel)]="partner.last_name" placeholder="Last Name" type="text" class="form-control" name="last_name" required pattern="[a-zA-Z][a-zA-Z ]+"/>
         </label>
-
+        <input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".jpg,.jpeg,.png,.gif">
       </div>
     </form>
   </div>
