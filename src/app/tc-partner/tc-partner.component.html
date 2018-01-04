@@ -47,7 +47,7 @@
     </li> -->
   </ul>
   <div class="editor">
-    <form (ngSubmit)="onSubmit()" #partnerForm="ngForm">
+    <form #partnerForm="ngForm">
       <div class="option">
         <button (click)="add()" type="button" class="btn btn-primary">Add</button>
         <button (click)="save()" type="submit" class="btn btn-success" [disabled]="!partnerForm.form.valid">Save</button>

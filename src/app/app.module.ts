@@ -18,7 +18,8 @@ import { MatButtonModule,
   MatProgressSpinnerModule,
   MatDialogModule,
   MatSidenavModule,
-  MatToolbarModule} from '@angular/material';
+  MatToolbarModule,
+  MatSnackBarModule} from '@angular/material';
 import { TcPartnerComponent } from './tc-partner/tc-partner.component';
 import { LoginComponent } from './login/login.component';
 import { TestcaseComponent } from './testcase/testcase.component';
@@ -47,6 +48,7 @@ import { DataTablesModule } from 'angular-datatables';
     MatToolbarModule,
     MatSidenavModule,
     MatIconModule,
+    MatSnackBarModule,
     AppRoutingModule,
     HttpClientModule,
     HttpModule,

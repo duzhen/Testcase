@@ -25,7 +25,7 @@ export class TestcaseService {
   getTestcases (): Observable<Testcase[]> {
     return this.httpc.get<Testcase[]>(this.testcaseUrl)
       .pipe(
-        tap(heroes => this.log(`fetched testcase`)),
+        tap(testcases => this.log(`fetched testcase`)),
         catchError(this.handleError('getTestcase', []))
       );
   }
@@ -41,12 +41,12 @@ export class TestcaseService {
   /** POST: add a new partner to the server */
   addPartner (partner: Partner): Observable<Partner> {
     return this.httpc.post<Partner>(this.partnerUrl, partner, httpOptions).pipe(
-      tap((partner: Partner) => this.log(`added partner w/ id=${partner}`)),
+      tap(_ => this.log(`added partner w/ id=${partner.id}`)),
       catchError(this.handleError<Partner>('addPartner'))
     );
   }
 
-  deleteHero (partner: Partner | number): Observable<Partner> {
+  deletePartner (partner: Partner | number): Observable<Partner> {
     const id = typeof partner === 'number' ? partner : partner.id;
     const url = `${this.partnerUrl}/${id}`;
 
@@ -112,7 +112,7 @@ export class TestcaseService {
 
   /** Log a HeroService message with the MessageService */
   private log(message: string) {
-    console.debug(message);
+    console.log(message);
     // this.messageService.add('HeroService: ' + message);
   }
 }
