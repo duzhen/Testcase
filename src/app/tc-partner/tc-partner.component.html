@@ -59,25 +59,41 @@
         <div class="form-row">
             <div class="form-group col-md-4">
               <label for="firstName">First Name</label>
-              <input [(ngModel)]="partner.first_name" placeholder="First Name" type="text" class="form-control" id="firstName" name="first_name"
-                required pattern="[a-zA-Z][a-zA-Z ]+" />
+              <input [(ngModel)]="partner.first_name" placeholder="First Name" type="text" class="form-control" id="firstName" name="firstName"
+                required pattern="[a-zA-Z]+" #firstName="ngModel"/>
+              <div [hidden]="firstName.valid || firstName.pristine"
+                class="alert alert-danger">
+                Name should be alphabet
+              </div>
             </div>
             <div class="form-group col-md-4">
               <label for="lastName">Last Name</label>
-              <input [(ngModel)]="partner.last_name" placeholder="Last Name" type="text" class="form-control" id="lastName" name="last_name"
-                required pattern="[a-zA-Z][a-zA-Z ]+" />
+              <input [(ngModel)]="partner.last_name" placeholder="Last Name" type="text" class="form-control" id="lastName" name="lastName"
+                required pattern="[a-zA-Z]+" #lastName="ngModel"/>
+                <div [hidden]="lastName.valid || lastName.pristine"
+                  class="alert alert-danger">
+                  Name should be alphabet
+                </div>
             </div>
           </div>
         <div class="form-row">
           <div class="form-group col-md-4">
             <label for="phone">Phone</label>
             <input [(ngModel)]="partner.phone" placeholder="Phone" type="text" class="form-control" id="phone" name="phone" required
-              pattern="[0-9]{3}[-][0-9]{3}[-][0-9]{4}" minlength="12" maxlength="12" />
+              pattern="[0-9]{3}[-][0-9]{3}[-][0-9]{4}" minlength="12" maxlength="12" #phone="ngModel"/>
+            <div [hidden]="phone.valid || phone.pristine"
+              class="alert alert-danger">
+              Phone number format 123-321-1234
+            </div>
           </div>
           <div class="form-group col-md-4">
             <label for="areaCode">Area Code</label>
-            <input [(ngModel)]="partner.area_code" placeholder="Area Code" type="text" class="form-control" id="areaCode" name="area_code"
-              required pattern="[0-9]*" maxlength="4" />
+            <input [(ngModel)]="partner.area_code" placeholder="Area Code" type="text" class="form-control" id="areaCode" name="areaCode"
+              required pattern="[0-9]*" maxlength="4" #areaCode="ngModel"/>
+            <div [hidden]="areaCode.valid || areaCode.pristine"
+              class="alert alert-danger">
+              Area Code should be a number
+            </div>
           </div>
           <div class="form-group col-md-4">
               <label for="photo">Photo</label>
