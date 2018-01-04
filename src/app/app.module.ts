@@ -24,6 +24,7 @@ import { LoginComponent } from './login/login.component';
 import { TestcaseComponent } from './testcase/testcase.component';
 import { TcClientComponent } from './tc-client/tc-client.component';
 import { HttpModule } from '@angular/http';
+import { DataTablesModule } from 'angular-datatables';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { HttpModule } from '@angular/http';
     // Remove it when a real server is ready to receive requests.
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false }
-    )
+    ),
+    DataTablesModule
   ],
   providers: [TestcaseService],
   entryComponents: [TcPartnerComponent, TcClientComponent],
