@@ -26,22 +26,22 @@ export class InMemoryDataService implements InMemoryDbService {
     // last_name: string;
     // photo_id: string;
     const partner = [
-      { id: 1, phone: '416-123-4567', area_code: '1', first_name: '', last_name: '', photo_id: '' },
-      { id: 2, phone: '647-123-4567', area_code: '1', first_name: '', last_name: '', photo_id: '' },
-      { id: 3, phone: '289-123-4567', area_code: '1', first_name: '', last_name: '', photo_id: '' },
-      { id: 4, phone: '647-000-1234', area_code: '1', first_name: 'Olivia', last_name: 'Smith', photo_id: '' },
-      { id: 5, phone: '416-321-4567', area_code: '1', first_name: 'Jason', last_name: 'Chen', photo_id: '' },
-      { id: 6, phone: '905-123-4567', area_code: '1', first_name: 'Henry', last_name: 'Zhang', photo_id: '' },
-      { id: 7, phone: '416-000-1234', area_code: '1', first_name: 'Peter', last_name: 'Wang', photo_id: '' },
-      { id: 8, phone: '416-567-6789', area_code: '1', first_name: 'Eric', last_name: 'Wong', photo_id: '' },
-      { id: 9, phone: '647-567-6789', area_code: '1', first_name: 'Frank', last_name: 'Zhou', photo_id: '' },
-      { id: 10, phone: '289-567-6789', area_code: '1', first_name: 'Cindy', last_name: 'Liu', photo_id: '' },
-      { id: 11, phone: '905-567-6789', area_code: '1', first_name: 'Andrew', last_name: 'Chen', photo_id: '' },
-      { id: 12, phone: '647-321-5678', area_code: '1', first_name: 'Brian', last_name: 'Ma', photo_id: '' },
-      { id: 13, phone: '289-321-5678', area_code: '1', first_name: 'David', last_name: 'Lin', photo_id: '' },
-      { id: 14, phone: '416-000-1357', area_code: '1', first_name: 'Andy', last_name: 'Liu', photo_id: '' },
-      { id: 15, phone: '416-000-2468', area_code: '1', first_name: 'Mary', last_name: 'Ma', photo_id: '' },
-      { id: 16, phone: '416-000-3579', area_code: '1', first_name: 'Cathy', last_name: 'Wu', photo_id: '' }
+      { id: 1, phone: '416-123-4567', area_code: '1', first_name: '', last_name: '', photo_id: '', photo: '' },
+      { id: 2, phone: '647-123-4567', area_code: '1', first_name: '', last_name: '', photo_id: '', photo: '' },
+      { id: 3, phone: '289-123-4567', area_code: '1', first_name: '', last_name: '', photo_id: '', photo: '' },
+      { id: 4, phone: '647-000-1234', area_code: '1', first_name: 'Olivia', last_name: 'Smith', photo_id: '000001.jpeg', photo: '' },
+      { id: 5, phone: '416-321-4567', area_code: '1', first_name: 'Jason', last_name: 'Chen', photo_id: '', photo: '' },
+      { id: 6, phone: '905-123-4567', area_code: '1', first_name: 'Henry', last_name: 'Zhang', photo_id: '', photo: '' },
+      { id: 7, phone: '416-000-1234', area_code: '1', first_name: 'Peter', last_name: 'Wang', photo_id: '', photo: '' },
+      { id: 8, phone: '416-567-6789', area_code: '1', first_name: 'Eric', last_name: 'Wong', photo_id: '', photo: '' },
+      { id: 9, phone: '647-567-6789', area_code: '1', first_name: 'Frank', last_name: 'Zhou', photo_id: '', photo: '' },
+      { id: 10, phone: '289-567-6789', area_code: '1', first_name: 'Cindy', last_name: 'Liu', photo_id: '', photo: '' },
+      { id: 11, phone: '905-567-6789', area_code: '1', first_name: 'Andrew', last_name: 'Chen', photo_id: '', photo: '' },
+      { id: 12, phone: '647-321-5678', area_code: '1', first_name: 'Brian', last_name: 'Ma', photo_id: '', photo: '' },
+      { id: 13, phone: '289-321-5678', area_code: '1', first_name: 'David', last_name: 'Lin', photo_id: '', photo: '' },
+      { id: 14, phone: '416-000-1357', area_code: '1', first_name: 'Andy', last_name: 'Liu', photo_id: '', photo: '' },
+      { id: 15, phone: '416-000-2468', area_code: '1', first_name: 'Mary', last_name: 'Ma', photo_id: '', photo: '' },
+      { id: 16, phone: '416-000-3579', area_code: '1', first_name: 'Cathy', last_name: 'Wu', photo_id: '', photo: '' }
     ];
 
     const client = [

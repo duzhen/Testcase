@@ -5,6 +5,7 @@ import { RequestOptions, Headers } from '@angular/http';
 import { Subject } from 'rxjs/Subject';
 import {MatSnackBar} from '@angular/material';
 import { DataTableDirective } from 'angular-datatables';
+import { Options, ImageResult } from 'ngx-image2dataurl';
 
 @Component({
   selector: 'app-tc-partner',
@@ -12,6 +13,14 @@ import { DataTableDirective } from 'angular-datatables';
   styleUrls: ['./tc-partner.component.scss']
 })
 export class TcPartnerComponent implements OnInit {
+  src: string = null;
+  options: Options = {
+    resize: {
+      maxHeight: 128,
+      maxWidth: 128
+    },
+    allowedExtensions: ['JPG', 'PnG'],
+  };
 
   @Input() partner: Partner;
   selectedPartner: Partner;
@@ -28,8 +37,8 @@ export class TcPartnerComponent implements OnInit {
   ngOnInit() {
     this.dtOptions = {
       pagingType: 'full_numbers',
-      select: true
-      // autoWidth: true
+      select: true,
+      autoWidth: true
       // pageLength: 1
     };
     this.getData();
@@ -70,6 +79,7 @@ export class TcPartnerComponent implements OnInit {
       this.selectedPartner.phone = this.partner.phone;
       this.selectedPartner.area_code = this.partner.area_code;
       this.selectedPartner.photo_id = this.partner.photo_id;
+      this.selectedPartner.photo = this.partner.photo;
       const d = [this.partner.id, this.partner.first_name, this.partner.last_name,
         this.partner.phone, this.partner.area_code, this.partner.photo_id];
       this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
@@ -110,16 +120,42 @@ export class TcPartnerComponent implements OnInit {
     });
   }
 
-  fileChange(event) {
-    const fileList: FileList = event.target.files;
-    if (fileList.length > 0) {
-        const file: File = fileList[0];
-        const formData: FormData = new FormData();
-        formData.append('uploadFile', file, file.name);
-        const headers = new Headers();
-        headers.append('Content-Type', 'multipart/form-data');
-        headers.append('Accept', 'application/json');
-        this.testcaseService.uploadFile(formData, headers);
+  // fileChange(event) {
+  //   const fileList: FileList = event.target.files;
+  //   if (fileList.length > 0) {
+  //       const file: File = fileList[0];
+  //       const formData: FormData = new FormData();
+  //       formData.append('uploadFile', file, file.name);
+  //       const headers = new Headers();
+  //       headers.append('Content-Type', 'multipart/form-data');
+  //       headers.append('Accept', 'application/json');
+  //       this.testcaseService.uploadFile(formData, headers);
+  //   }
+  // }
+
+  selected(imageResult: ImageResult) {
+    if (imageResult.error) {
+      alert(imageResult.error);
     }
-}
+    const file: File = imageResult.file;
+    this.partner.photo_id = file.name;
+    // this.partner.phone = imageResult.file
+    // console.log(imageResult.file);
+    // const myReader: FileReader = new FileReader();
+
+    // myReader.onloadend = (e) => {
+    //   // this.partner.photo = myReader.result;
+    //   // console.log(this.partner.photo);
+    // };
+    // myReader.readAsDataURL(file);
+    // const formData: FormData = new FormData();
+    //     formData.append('uploadFile', file, file.name);
+    //     const headers = new Headers();
+    //     headers.append('Content-Type', 'multipart/form-data');
+    //     headers.append('Accept', 'application/json');
+    //     this.testcaseService.uploadFile(formData, headers);
+    this.partner.photo = imageResult.resized
+      && imageResult.resized.dataURL
+      || imageResult.dataURL;
+  }
 }

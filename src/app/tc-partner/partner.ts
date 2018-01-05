@@ -5,4 +5,5 @@ export class Partner {
   first_name: string;
   last_name: string;
   photo_id: string;
+  photo: string;
 }

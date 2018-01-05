@@ -75,6 +75,9 @@
                   Name should be alphabet
                 </div>
             </div>
+            <div class="form-group col-md-4">
+              <img [src]="partner.photo" *ngIf="partner.photo"><br>
+            </div>
           </div>
         <div class="form-row">
           <div class="form-group col-md-4">
@@ -98,7 +101,7 @@
           <div class="form-group col-md-4">
               <label for="photo">Photo</label>
               <div class="form-group col-md-6">
-                  <input type="file" id="photo" (change)="fileChange($event)" placeholder="Upload file" accept=".jpg,.jpeg,.png,.gif">
+                  <input type="file" [imageToDataUrl]="options" (imageSelected)="selected($event)" id="photo" placeholder="Upload file" accept="image/*">
               </div>
             </div>
         </div>

@@ -26,6 +26,7 @@ import { TestcaseComponent } from './testcase/testcase.component';
 import { TcClientComponent } from './tc-client/tc-client.component';
 import { HttpModule } from '@angular/http';
 import { DataTablesModule } from 'angular-datatables';
+import { ImageToDataUrlModule } from 'ngx-image2dataurl';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { DataTablesModule } from 'angular-datatables';
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false }
     ),
-    DataTablesModule
+    DataTablesModule,
+    ImageToDataUrlModule
   ],
   providers: [TestcaseService],
   entryComponents: [TcPartnerComponent, TcClientComponent],
